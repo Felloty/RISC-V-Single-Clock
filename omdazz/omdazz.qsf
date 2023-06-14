@@ -1,0 +1,62 @@
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE6E22C8
+
+set_global_assignment -name NUM_PARALLEL_PROCESSORS 4
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY .
+set_global_assignment -name TOP_LEVEL_ENTITY omdazz
+set_global_assignment -name SDC_FILE ./omdazz.sdc
+
+set_global_assignment -name VERILOG_FILE ./omdazz.v
+set_global_assignment -name VERILOG_FILE ../source/cpu.v
+set_global_assignment -name VERILOG_FILE ../source/cpu.vh
+set_global_assignment -name VERILOG_FILE ../source/top.v
+set_global_assignment -name VERILOG_FILE ../testbench/testbench.v
+
+set_global_assignment -name SEARCH_PATH ../source
+set_global_assignment -name SEARCH_PATH ../program
+set_global_assignment -name SEARCH_PATH ../testbench
+
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_WEAK_PULLUP "AS INPUT TRI-STATED"
+set_global_assignment -name CYCLONEII_RESERVE_NCEO_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to *
+
+set_location_assignment PIN_23 -to clk
+set_location_assignment PIN_25 -to rst
+
+#  key[3:0]    :  0 - pressed, 1 - not pressed
+#  led[3:0]    :  0 - on, 1 - off
+#  hex[7:0]    :  0 - on, 1 - off
+#  digit[3:0]  :  0 - on, 1 - off
+#  buzzer      :  0 - on, 1 - off
+
+set_location_assignment PIN_88 -to key[0]
+set_location_assignment PIN_89 -to key[1]
+set_location_assignment PIN_90 -to key[2]
+set_location_assignment PIN_91 -to key[3]
+
+set_location_assignment PIN_84 -to led[0]
+set_location_assignment PIN_85 -to led[1]
+set_location_assignment PIN_86 -to led[2]
+set_location_assignment PIN_87 -to led[3]
+
+set_location_assignment PIN_128 -to hex[0]
+set_location_assignment PIN_121 -to hex[1]
+set_location_assignment PIN_125 -to hex[2]
+set_location_assignment PIN_129 -to hex[3]
+set_location_assignment PIN_132 -to hex[4]
+set_location_assignment PIN_126 -to hex[5]
+set_location_assignment PIN_124 -to hex[6]
+set_location_assignment PIN_127 -to hex[7]
+
+set_location_assignment PIN_133 -to digit[0]
+set_location_assignment PIN_135 -to digit[1]
+set_location_assignment PIN_136 -to digit[2]
+set_location_assignment PIN_137 -to digit[3]
+
+set_location_assignment PIN_110 -to buzzer
+
+set_global_assignment -name LAST_QUARTUS_VERSION "21.1.1 Lite Edition"
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
